@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OmniFunnel AI Visibility Platform - Live Demo</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .gradient-bg { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <div class="min-h-screen">
+        <!-- Header -->
+        <div class="gradient-bg text-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+                <h1 class="text-4xl font-bold mb-4">OmniFunnel AI Visibility Platform</h1>
+                <p class="text-xl opacity-90">The first unified, AI-native SEO platform for tracking brand visibility across LLMs</p>
+                <div class="mt-6 flex space-x-4">
+                    <div class="bg-white bg-opacity-20 px-4 py-2 rounded-md">
+                        <span class="font-semibold">Live Backend API</span>
+                    </div>
+                    <div class="bg-green-500 bg-opacity-80 px-4 py-2 rounded-md">
+                        <span class="font-semibold">✓ Operational</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+            
+            <!-- Live API Status -->
+            <div class="bg-white rounded-lg shadow-sm border p-6 mb-8">
+                <h2 class="text-2xl font-semibold text-gray-900 mb-4">Live API Testing</h2>
+                <p class="text-gray-600 mb-4">Your backend API is live and operational. Test the endpoints below:</p>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="border border-gray-200 rounded-md p-4">
+                        <h3 class="font-semibold text-gray-900 mb-2">Service Health</h3>
+                        <button onclick="testHealth()" class="bg-blue-600 text-white px-4 py-2 rounded-md text-sm hover:bg-blue-700">
+                            Test Health Endpoint
+                        </button>
+                        <div id="health-result" class="mt-3 text-sm bg-gray-50 p-3 rounded hidden"></div>
+                    </div>
+                    
+                    <div class="border border-gray-200 rounded-md p-4">
+                        <h3 class="font-semibold text-gray-900 mb-2">AI Engines</h3>
+                        <button onclick="testEngines()" class="bg-green-600 text-white px-4 py-2 rounded-md text-sm hover:bg-green-700">
+                            List AI Engines
+                        </button>
+                        <div id="engines-result" class="mt-3 text-sm bg-gray-50 p-3 rounded hidden"></div>
+                    </div>
+                    
+                    <div class="border border-gray-200 rounded-md p-4">
+                        <h3 class="font-semibold text-gray-900 mb-2">Create Site</h3>
+                        <input type="text" id="domain-input" placeholder="example.com" class="w-full px-3 py-2 border rounded-md text-sm mb-2">
+                        <button onclick="createSite()" class="bg-purple-600 text-white px-4 py-2 rounded-md text-sm hover:bg-purple-700">
+                            Create Test Site
+                        </button>
+                        <div id="site-result" class="mt-3 text-sm bg-gray-50 p-3 rounded hidden"></div>
+                    </div>
+                    
+                    <div class="border border-gray-200 rounded-md p-4">
+                        <h3 class="font-semibold text-gray-900 mb-2">Run AI Tracking</h3>
+                        <p class="text-xs text-gray-500 mb-2">Create a site first, then test tracking</p>
+                        <button onclick="runTracking()" class="bg-red-600 text-white px-4 py-2 rounded-md text-sm hover:bg-red-700">
+                            Test AI Tracking
+                        </button>
+                        <div id="tracking-result" class="mt-3 text-sm bg-gray-50 p-3 rounded hidden"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Platform Features -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+                <div class="bg-white rounded-lg shadow-sm border p-6">
+                    <h3 class="text-lg font-semibold text-gray-900 mb-3">LM SEO Tracking</h3>
+                    <ul class="text-sm text-gray-700 space-y-2">
+                        <li>✓ ChatGPT, Claude, Gemini integration</li>
+                        <li>✓ Real citation extraction</li>
+                        <li>✓ Prompt variant generation</li>
+                        <li>✓ Answer quality analysis</li>
+                    </ul>
+                </div>
+                
+                <div class="bg-white rounded-lg shadow-sm border p-6">
+                    <h3 class="text-lg font-semibold text-gray-900 mb-3">LEO Content Engine</h3>
+                    <ul class="text-sm text-gray-700 space-y-2">
+                        <li>✓ AI-powered FAQ generation</li>
+                        <li>✓ Comparison table creation</li>
+                        <li>✓ JSON-LD schema automation</li>
+                        <li>✓ Content quality evaluation</li>
+                    </ul>
+                </div>
+                
+                <div class="bg-white rounded-lg shadow-sm border p-6">
+                    <h3 class="text-lg font-semibold text-gray-900 mb-3">AI Visibility Score™</h3>
+                    <ul class="text-sm text-gray-700 space-y-2">
+                        <li>✓ 7-component algorithm</li>
+                        <li>✓ Real-time calculation</li>
+                        <li>✓ Engine-specific breakdown</li>
+                        <li>✓ Strategic recommendations</li>
+                    </ul>
+                </div>
+                
+                <div class="bg-white rounded-lg shadow-sm border p-6">
+                    <h3 class="text-lg font-semibold text-gray-900 mb-3">Competitive Intelligence</h3>
+                    <ul class="text-sm text-gray-700 space-y-2">
+                        <li>✓ Multi-engine competitor tracking</li>
+                        <li>✓ Entity stitching & SameAs links</li>
+                        <li>✓ Performance delta monitoring</li>
+                        <li>✓ Strategic optimization suggestions</li>
+                    </ul>
+                </div>
+                
+                <div class="bg-white rounded-lg shadow-sm border p-6">
+                    <h3 class="text-lg font-semibold text-gray-900 mb-3">CMS Auto-Deployment</h3>
+                    <ul class="text-sm text-gray-700 space-y-2">
+                        <li>✓ WordPress integration</li>
+                        <li>✓ Content publishing pipeline</li>
+                        <li>✓ Schema deployment automation</li>
+                        <li>✓ Version control & rollback</li>
+                    </ul>
+                </div>
+                
+                <div class="bg-white rounded-lg shadow-sm border p-6">
+                    <h3 class="text-lg font-semibold text-gray-900 mb-3">Production Ready</h3>
+                    <ul class="text-sm text-gray-700 space-y-2">
+                        <li>✓ 6 microservices architecture</li>
+                        <li>✓ Real AI integration</li>
+                        <li>✓ Professional frontend</li>
+                        <li>✓ Cloud deployment ready</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Repository Access -->
+            <div class="bg-blue-50 border border-blue-200 rounded-md p-6">
+                <h3 class="text-lg font-semibold text-blue-900 mb-3">For Your Internal Team</h3>
+                <p class="text-blue-800 mb-4">Access the complete platform codebase and setup instructions:</p>
+                <div class="space-y-3">
+                    <div>
+                        <strong class="text-blue-900">Repository:</strong>
+                        <a href="https://github.com/JackAndJill23/omnifunnel-ai-visibility" target="_blank" class="text-blue-600 hover:text-blue-800 ml-2">
+                            https://github.com/JackAndJill23/omnifunnel-ai-visibility
+                        </a>
+                    </div>
+                    <div>
+                        <strong class="text-blue-900">Live Backend API:</strong>
+                        <a href="https://web-production-3d35.up.railway.app/health" target="_blank" class="text-blue-600 hover:text-blue-800 ml-2">
+                            https://web-production-3d35.up.railway.app/
+                        </a>
+                    </div>
+                    <div>
+                        <strong class="text-blue-900">Setup Time:</strong>
+                        <span class="text-blue-800 ml-2">5 minutes with API keys</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        const API_BASE = 'https://web-production-3d35.up.railway.app';
+        let currentSiteId = null;
+        let currentClusterId = null;
+
+        async function testHealth() {
+            const result = document.getElementById('health-result');
+            result.classList.remove('hidden');
+            result.innerHTML = 'Testing...';
+            
+            try {
+                const response = await fetch(`${API_BASE}/health`);
+                const data = await response.json();
+                result.innerHTML = `<strong>Status:</strong> ${data.status}<br>
+                                   <strong>Engines:</strong> ${data.engines.join(', ')}<br>
+                                   <strong>Environment:</strong> ${data.environment}<br>
+                                   <strong>Timestamp:</strong> ${data.timestamp}`;
+                result.className = 'mt-3 text-sm bg-green-50 p-3 rounded border border-green-200';
+            } catch (error) {
+                result.innerHTML = `Error: ${error.message}`;
+                result.className = 'mt-3 text-sm bg-red-50 p-3 rounded border border-red-200';
+            }
+        }
+
+        async function testEngines() {
+            const result = document.getElementById('engines-result');
+            result.classList.remove('hidden');
+            result.innerHTML = 'Testing...';
+            
+            try {
+                const response = await fetch(`${API_BASE}/v1/engines`);
+                const data = await response.json();
+                result.innerHTML = `<strong>Available Engines:</strong><br>
+                                   ${data.engines.map(engine => `• ${engine}`).join('<br>')}<br>
+                                   <strong>Total:</strong> ${data.count} engines`;
+                result.className = 'mt-3 text-sm bg-green-50 p-3 rounded border border-green-200';
+            } catch (error) {
+                result.innerHTML = `Error: ${error.message}`;
+                result.className = 'mt-3 text-sm bg-red-50 p-3 rounded border border-red-200';
+            }
+        }
+
+        async function createSite() {
+            const domain = document.getElementById('domain-input').value;
+            const result = document.getElementById('site-result');
+            result.classList.remove('hidden');
+            
+            if (!domain) {
+                result.innerHTML = 'Please enter a domain name';
+                result.className = 'mt-3 text-sm bg-yellow-50 p-3 rounded border border-yellow-200';
+                return;
+            }
+            
+            result.innerHTML = 'Creating site...';
+            
+            try {
+                const response = await fetch(`${API_BASE}/v1/sites`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        domain: domain,
+                        cms_type: 'wordpress',
+                        tenant_id: 1
+                    })
+                });
+                
+                const data = await response.json();
+                currentSiteId = data.site_id;
+                
+                result.innerHTML = `<strong>Site Created!</strong><br>
+                                   <strong>Domain:</strong> ${data.domain}<br>
+                                   <strong>Site ID:</strong> ${data.site_id}<br>
+                                   <strong>CMS:</strong> ${data.cms_type}<br>
+                                   <strong>Created:</strong> ${data.created_at}`;
+                result.className = 'mt-3 text-sm bg-green-50 p-3 rounded border border-green-200';
+            } catch (error) {
+                result.innerHTML = `Error: ${error.message}`;
+                result.className = 'mt-3 text-sm bg-red-50 p-3 rounded border border-red-200';
+            }
+        }
+
+        async function runTracking() {
+            const result = document.getElementById('tracking-result');
+            result.classList.remove('hidden');
+            
+            if (!currentSiteId) {
+                result.innerHTML = 'Please create a site first';
+                result.className = 'mt-3 text-sm bg-yellow-50 p-3 rounded border border-yellow-200';
+                return;
+            }
+            
+            result.innerHTML = 'Setting up tracking...';
+            
+            try {
+                // First create a cluster
+                const clusterResponse = await fetch(`${API_BASE}/v1/sites/${currentSiteId}/clusters`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        name: 'Demo Cluster',
+                        seed_prompt: 'best AI SEO platforms for enterprises',
+                        keywords: ['ai', 'seo', 'platform']
+                    })
+                });
+                
+                const cluster = await clusterResponse.json();
+                currentClusterId = cluster.cluster_id;
+                
+                result.innerHTML = 'Running AI tracking with ChatGPT...';
+                
+                // Run tracking
+                const trackResponse = await fetch(`${API_BASE}/v1/clusters/${cluster.cluster_id}/run`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        engine: 'chatgpt',
+                        variant_sample: 2
+                    })
+                });
+                
+                const trackData = await trackResponse.json();
+                
+                result.innerHTML = `<strong>AI Tracking Initiated!</strong><br>
+                                   <strong>Run ID:</strong> ${trackData.run_id}<br>
+                                   <strong>Engine:</strong> ${trackData.engine}<br>
+                                   <strong>Status:</strong> ${trackData.status}<br>
+                                   <strong>Variants:</strong> ${trackData.variant_count}<br>
+                                   <em>Real ChatGPT responses being generated...</em>`;
+                result.className = 'mt-3 text-sm bg-green-50 p-3 rounded border border-green-200';
+                
+                // Check for results after a delay
+                setTimeout(async () => {
+                    try {
+                        const answersResponse = await fetch(`${API_BASE}/v1/clusters/${cluster.cluster_id}/answers`);
+                        const answers = await answersResponse.json();
+                        
+                        if (answers.length > 0) {
+                            const answer = answers[0];
+                            result.innerHTML += `<br><br><strong>✓ REAL AI RESPONSE RECEIVED!</strong><br>
+                                               <strong>Response Length:</strong> ${answer.raw_text.length} characters<br>
+                                               <strong>Citations Found:</strong> ${answer.citations.length}<br>
+                                               <strong>Sample Text:</strong> "${answer.raw_text.substring(0, 100)}..."`;
+                        }
+                    } catch (e) {
+                        console.log('Still processing...');
+                    }
+                }, 5000);
+                
+            } catch (error) {
+                result.innerHTML = `Error: ${error.message}`;
+                result.className = 'mt-3 text-sm bg-red-50 p-3 rounded border border-red-200';
+            }
+        }
+    </script>
+</body>
+</html>
