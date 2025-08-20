@@ -227,7 +227,20 @@ async def health():
     return {
         "status": "ok", 
         "service": "tracker",
-        "engines": demo_engines
+        "engines": demo_engines,
+        "environment": os.getenv("ENVIRONMENT", "development"),
+        "port": os.getenv("PORT", "8001"),
+        "timestamp": datetime.now().isoformat()
+    }
+
+@app.get("/")
+async def root():
+    return {
+        "platform": "OmniFunnel AI Visibility",
+        "service": "Tracker",
+        "status": "operational",
+        "endpoints": ["/health", "/v1/engines", "/v1/sites"],
+        "documentation": "https://github.com/JackAndJill23/omnifunnel-ai-visibility"
     }
 
 @app.get("/v1/engines")
@@ -396,6 +409,12 @@ async def get_run_status(run_id: int):
 if __name__ == "__main__":
     print("Starting OmniFunnel Demo Tracker Service...")
     print("This will make the frontend fully functional for testing!")
-    print("Frontend: http://localhost:3000")
-    print("Backend API: http://localhost:8001")
-    uvicorn.run(app, host="0.0.0.0", port=8001)
+    
+    # Use Railway's PORT environment variable if available
+    port = int(os.getenv("PORT", 8001))
+    host = "0.0.0.0"
+    
+    print(f"Service starting on {host}:{port}")
+    print(f"Health check: http://{host}:{port}/health")
+    
+    uvicorn.run(app, host=host, port=port)
