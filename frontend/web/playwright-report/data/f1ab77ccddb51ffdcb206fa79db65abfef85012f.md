@@ -1,0 +1,63 @@
+# Page snapshot
+
+```yaml
+- generic [active]:
+  - generic:
+    - generic:
+      - generic [ref=e2]:
+        - link "← Back to Home" [ref=e3]:
+          - /url: /
+        - heading "AI Visibility Tracking" [level=1] [ref=e4]
+      - generic [ref=e5]:
+        - generic:
+          - generic [ref=e6]:
+            - generic:
+              - heading "Sites" [level=2] [ref=e7]
+              - button "+ Add Site" [ref=e8] [cursor=pointer]
+            - generic:
+              - generic [ref=e9] [cursor=pointer]:
+                - generic: real-test.com
+                - generic: wordpress
+              - generic [ref=e10] [cursor=pointer]:
+                - generic: api-test.com
+                - generic: wordpress
+              - generic [ref=e11] [cursor=pointer]:
+                - generic: playwright-test.com
+                - generic: wordpress
+          - generic [ref=e12]:
+            - generic:
+              - heading "Clusters" [level=2] [ref=e13]
+              - button "+ Add Cluster" [ref=e14] [cursor=pointer]
+            - generic [ref=e15] [cursor=pointer]:
+              - generic: Playwright Test Cluster
+              - generic: 0 keywords
+          - generic [ref=e16]:
+            - heading "Run Tracking" [level=2]
+            - generic:
+              - generic [ref=e17]:
+                - generic: Selected Cluster
+                - generic: Playwright Test Cluster
+              - generic:
+                - generic:
+                  - generic: Engine (optional)
+                  - combobox [ref=e18]:
+                    - option "All Engines"
+                    - option "ChatGPT" [selected]
+                    - option "Claude"
+                    - option "Gemini"
+                    - option "Perplexity"
+                    - option "Bing Copilot"
+                - generic:
+                  - generic: Variant Sample Size
+                  - spinbutton [ref=e19]: "1"
+                  - generic: Number of prompt variants to test (1-100)
+                - button "Start AI Tracking Run"
+              - generic:
+                - heading "Recent Runs" [level=3]
+                - generic [ref=e20]:
+                  - generic:
+                    - generic [ref=e21]: "Run #5"
+                    - generic [ref=e22]: completed
+                  - generic: 1 variants • chatgpt
+  - alert [ref=e23]: AI Visibility Tracking
+```

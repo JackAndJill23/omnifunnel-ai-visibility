@@ -1,0 +1,46 @@
+# Page snapshot
+
+```yaml
+- generic [active] [ref=e1]:
+  - generic [ref=e3]:
+    - generic [ref=e7]:
+      - link "← Back to Home" [ref=e8] [cursor=pointer]:
+        - /url: /
+      - heading "AI Visibility Tracking" [level=1] [ref=e9]
+    - generic [ref=e11]:
+      - generic [ref=e12]:
+        - generic [ref=e13]:
+          - heading "Sites" [level=2] [ref=e14]
+          - button "+ Add Site" [ref=e15] [cursor=pointer]
+        - generic [ref=e16]:
+          - generic [ref=e17] [cursor=pointer]:
+            - generic [ref=e18] [cursor=pointer]: real-test.com
+            - generic [ref=e19] [cursor=pointer]: wordpress
+          - generic [ref=e20] [cursor=pointer]:
+            - generic [ref=e21] [cursor=pointer]: api-test.com
+            - generic [ref=e22] [cursor=pointer]: wordpress
+          - generic [ref=e23] [cursor=pointer]:
+            - generic [ref=e24] [cursor=pointer]: playwright-test.com
+            - generic [ref=e25] [cursor=pointer]: wordpress
+          - generic [ref=e26] [cursor=pointer]:
+            - generic [ref=e27] [cursor=pointer]: api-test.com
+            - generic [ref=e28] [cursor=pointer]: wordpress
+          - generic [ref=e29] [cursor=pointer]:
+            - generic [ref=e30] [cursor=pointer]: playwright-test.com
+            - generic [ref=e31] [cursor=pointer]: wordpress
+      - generic [ref=e32]:
+        - generic [ref=e33]:
+          - heading "Clusters" [level=2] [ref=e34]
+          - button "+ Add Cluster" [ref=e35] [cursor=pointer]
+        - generic [ref=e36]:
+          - generic [ref=e37] [cursor=pointer]:
+            - generic [ref=e38] [cursor=pointer]: Playwright Test Cluster
+            - generic [ref=e39] [cursor=pointer]: 0 keywords
+          - generic [ref=e40] [cursor=pointer]:
+            - generic [ref=e41] [cursor=pointer]: Playwright Test Cluster
+            - generic [ref=e42] [cursor=pointer]: 0 keywords
+      - generic [ref=e43]:
+        - heading "Run Tracking" [level=2] [ref=e44]
+        - paragraph [ref=e45]: Select a cluster to run AI visibility tracking.
+  - alert [ref=e46]: AI Visibility Tracking
+```

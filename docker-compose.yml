@@ -1,0 +1,132 @@
+version: '3.9'
+
+services:
+  db:
+    image: ankane/pgvector:latest
+    container_name: omnifunnel_db
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-omnifunnel}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-omnifunnel}
+      POSTGRES_DB: ${POSTGRES_DB:-omnifunnel}
+    ports:
+      - "5432:5432"
+    volumes:
+      - db_data:/var/lib/postgresql/data
+      - ./db/migrations:/docker-entrypoint-initdb.d:ro
+
+  redis:
+    image: redis:7
+    container_name: omnifunnel_redis
+    ports:
+      - "6379:6379"
+
+  authz:
+    build: ./backend
+    container_name: omnifunnel_authz
+    command: uvicorn backend.services.authz.main:app --host 0.0.0.0 --port ${GATEWAY_PORT:-8080}
+    environment:
+      SERVICE_NAME: authz
+    depends_on:
+      - db
+      - redis
+    ports:
+      - "8080:8080"
+
+  tracker:
+    build: ./backend
+    container_name: omnifunnel_tracker
+    command: uvicorn backend.services.tracker.main:app --host 0.0.0.0 --port ${TRACKER_PORT:-8001}
+    environment:
+      SERVICE_NAME: tracker
+    depends_on:
+      - db
+      - redis
+    ports:
+      - "8001:8001"
+
+  generator:
+    build: ./backend
+    container_name: omnifunnel_generator
+    command: uvicorn backend.services.generator.main:app --host 0.0.0.0 --port ${GENERATOR_PORT:-8002}
+    environment:
+      SERVICE_NAME: generator
+    depends_on:
+      - db
+      - redis
+    ports:
+      - "8002:8002"
+
+  analytics:
+    build: ./backend
+    container_name: omnifunnel_analytics
+    command: uvicorn backend.services.analytics.main:app --host 0.0.0.0 --port ${ANALYTICS_PORT:-8003}
+    environment:
+      SERVICE_NAME: analytics
+    depends_on:
+      - db
+      - redis
+    ports:
+      - "8003:8003"
+
+  score:
+    build: ./backend
+    container_name: omnifunnel_score
+    command: uvicorn backend.services.score.main:app --host 0.0.0.0 --port ${SCORE_PORT:-8004}
+    environment:
+      SERVICE_NAME: score
+    depends_on:
+      - db
+      - redis
+    ports:
+      - "8004:8004"
+
+  deployer:
+    build: ./backend
+    container_name: omnifunnel_deployer
+    command: uvicorn backend.services.deployer.main:app --host 0.0.0.0 --port ${DEPLOYER_PORT:-8005}
+    environment:
+      SERVICE_NAME: deployer
+    depends_on:
+      - db
+      - redis
+    ports:
+      - "8005:8005"
+
+  telemetry:
+    build: ./backend
+    container_name: omnifunnel_telemetry
+    command: uvicorn backend.services.telemetry.main:app --host 0.0.0.0 --port ${TELEMETRY_PORT:-8006}
+    environment:
+      SERVICE_NAME: telemetry
+    depends_on:
+      - db
+      - redis
+    ports:
+      - "8006:8006"
+
+  billing:
+    build: ./backend
+    container_name: omnifunnel_billing
+    command: uvicorn backend.services.billing.main:app --host 0.0.0.0 --port ${BILLING_PORT:-8007}
+    environment:
+      SERVICE_NAME: billing
+    depends_on:
+      - db
+      - redis
+    ports:
+      - "8007:8007"
+
+  web:
+    build: ./frontend/web
+    container_name: omnifunnel_web
+    ports:
+      - "3000:3000"
+    depends_on:
+      - tracker
+      - analytics
+      - score
+      - deployer
+      - telemetry
+
+volumes:
+  db_data:
